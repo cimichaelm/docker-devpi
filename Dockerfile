@@ -7,6 +7,17 @@ ENV STORAGE /storage
 # Set default server root
 ENV DEVPI_SERVER_ROOT=/storage/devpi
 
+# install packages
+
+RUN apt-get update -y && apt-get install -y \
+\
+    nano \
+    sudo \
+ \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
 # copy code
 ADD ./code /code
 WORKDIR /code
