@@ -57,11 +57,12 @@ check_status()
     date
     echo "user: ${devpiuser}"
     echo "default storagedir: ${storagedir}"
-    
     grep $u /etc/passwd
     ls -lah ${storagedir}
     ls -lah ${codedir}    
 }
+
+defaults
 
 create_users
 
