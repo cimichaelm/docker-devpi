@@ -61,6 +61,7 @@ if [ ! -f "$DEVPI_SERVER_ROOT/.serverversion" ]; then
     initialize=yes
     echo "ENTRYPOINT: Initializing server root $DEVPI_SERVER_ROOT"
     ${venvbin}/devpi-init --serverdir "$DEVPI_SERVER_ROOT"
+    ${venvbin}/devpi-gen-config $opts
 fi
 
 echo "ENTRYPOINT: Starting devpi-server"
