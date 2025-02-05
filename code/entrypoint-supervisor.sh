@@ -11,7 +11,7 @@ function defaults() {
     PROG=${venvbin}/devpi-server
     opts="--restrict-modify root --host 0.0.0.0 --port $PORT"
     opts="--host 0.0.0.0 --port $PORT"
-    supervisorconfig="/code/supervisord.conf"
+    supervisor_config="/code/supervisord.conf"
 }
 
 function use_venv() {
