@@ -3,6 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 function defaults() {
+    tmpdir=/var/tmp
     PORT=3141
     u=devpi
     devpiuser=devpi
@@ -13,6 +14,7 @@ function defaults() {
     opts="--restrict-modify root --host 0.0.0.0 --port $PORT"
     opts="--host 0.0.0.0 --port $PORT"
     supervisor_config="/code/supervisord.conf"
+    workdir=${tmpdir}
 }
 
 function use_venv() {
@@ -68,6 +70,12 @@ if [ ! -f "$DEVPI_SERVER_ROOT/.serverversion" ]; then
 fi
 if [ "$initialize" == "yes" ]; then
     echo "Initialization required"
+fi
+
+
+# change to writeable directory for logs
+if [ -d ${workdir} ]; then
+    cd ${workdir}
 fi
 
 # start supervisor in foreground
