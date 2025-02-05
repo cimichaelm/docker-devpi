@@ -49,13 +49,14 @@ if [ ! -f "$DEVPI_SERVER_ROOT/.serverversion" ]; then
 fi
 
 echo "ENTRYPOINT: Starting devpi-server"
-if [ -f $PROG ]; then
-    sudo -u $u --preserve-env $PROG $opts "$@" &
+#devpi-server --host 0.0.0.0 --port 3141 --serverdir "$DEVPI_SERVER_ROOT" "$@" &if [ -f $PROG ]; then
+    # sudo -u $u --preserve-env $PROG $opts "$@" &
+    $PROG $opts "$@" &
 else
     echo "ERROR: $PROG not found"
     exit 1
 fi
-#devpi-server --host 0.0.0.0 --port 3141 --serverdir "$DEVPI_SERVER_ROOT" "$@" &
+
 
 timeout 10 bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$0/$1; do sleep 1; done' localhost 3141
 

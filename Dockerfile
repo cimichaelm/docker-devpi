@@ -5,7 +5,7 @@ ENV VIRTUAL_ENV /env
 ENV STORAGE /storage
 
 # Set default server root
-ENV DEVPI_SERVER_ROOT=/devpi
+ENV DEVPI_SERVER_ROOT=/storage/devpi
 
 # copy code
 ADD ./code /code
@@ -22,6 +22,9 @@ RUN $VIRTUAL_ENV/bin/pip install -r /code/devpi-requirements.txt
 
 # client
 COPY code/devpi-client /usr/local/bin/
+
+# switch user
+USER devpi
 
 # add entrypoint
 ENTRYPOINT [ "/bin/bash", "/code/entrypoint.sh" ]
