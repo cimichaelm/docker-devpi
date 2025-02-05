@@ -23,9 +23,6 @@ RUN $VIRTUAL_ENV/bin/pip install -r /code/devpi-requirements.txt
 # client
 COPY code/devpi-client /usr/local/bin/
 
-# switch user
-USER devpi
-
 # add entrypoint
 ENTRYPOINT [ "/bin/bash", "/code/entrypoint-supervisor.sh" ]
 EXPOSE 3141

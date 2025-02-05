@@ -5,6 +5,7 @@ IFS=$'\n\t'
 function defaults() {
     PORT=3141
     u=devpi
+    devpiuser=devpi
     venv=env
     PREFIX=/
     venvbin=${PREFIX}/${venv}/bin
@@ -55,13 +56,14 @@ fi
 if [ ! -d "$DEVPI_SERVER_ROOT" ]; then
     echo "ENTRYPOINT: Creating devpi-server root"
     mkdir -p "$DEVPI_SERVER_ROOT"
+    chown ${devpiuser}:${devpiuser} "$DEVPI_SERVER_ROOT"
 fi
 
 initialize=no
 if [ ! -f "$DEVPI_SERVER_ROOT/.serverversion" ]; then
     initialize=yes
     echo "ENTRYPOINT: Initializing server root $DEVPI_SERVER_ROOT"
-    ${venvbin}/devpi-init --serverdir "$DEVPI_SERVER_ROOT"
+    sudo -u $devpiuser --preserve-env ${venvbin}/devpi-init --serverdir "$DEVPI_SERVER_ROOT"
     #${venvbin}/devpi-gen-config $opts
 fi
 if [ "$initialize" == "yes" ]; then
