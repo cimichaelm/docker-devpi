@@ -8,7 +8,7 @@ function defaults() {
     venv=env
     PREFIX=/
     venvbin=${PREFIX}/${venv}/bin
-    PROG=${PREFIX}/${venv}/bin/devpi-server
+    PROG=${venvbin}/devpi-server
     opts="--restrict-modify root --host 0.0.0.0 --port $PORT"
     opts="--host 0.0.0.0 --port $PORT"
 }
@@ -64,7 +64,9 @@ if [ ! -f "$DEVPI_SERVER_ROOT/.serverversion" ]; then
 fi
 
 echo "ENTRYPOINT: Starting devpi-server"
-#devpi-server --host 0.0.0.0 --port 3141 --serverdir "$DEVPI_SERVER_ROOT" "$@" &if [ -f $PROG ]; then
+#devpi-server --host 0.0.0.0 --port 3141 --serverdir "$DEVPI_SERVER_ROOT" "$@" &
+
+if [ -f $PROG ]; then
     # sudo -u $u --preserve-env $PROG $opts "$@" &
     $PROG $opts "$@" &
 else
