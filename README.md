@@ -10,6 +10,10 @@ the following plugins and components:
 * [devpi-lockdown](https://pypi.python.org/pypi/devpi-lockdown)
 * [devpi-json](https://pypi.org/project/devpi-json-info/)
 
+Version 7.0
+-----------
+
+
 Starting the image
 ------------------
 `devpi` needs its own folder to store packages and data, which you probably want
