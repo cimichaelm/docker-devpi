@@ -9,6 +9,7 @@ defaults()
     tmpdir=/var/tmp
     prefix="/devpi"
     devpiuser=devpi
+    storagedir=${STORAGE:-"/storage"}
 }
 
 # change permission and ownership
@@ -51,3 +52,7 @@ create_users()
 }
 
 create_users
+
+create_directory ${storagedir}
+fix_permissions  ${storagedir}
+

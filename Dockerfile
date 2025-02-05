@@ -2,6 +2,8 @@ FROM python:3.12
 
 
 ENV VIRTUAL_ENV /env
+ENV STORAGE /storage
+
 # Set default server root
 ENV DEVPI_SERVER_ROOT=/devpi
 
