@@ -10,6 +10,7 @@ defaults()
     prefix="/devpi"
     devpiuser=devpi
     storagedir=${STORAGE:-"/storage"}
+    codedir="/code"
 }
 
 # change permission and ownership
@@ -47,8 +48,19 @@ devpi_init_fs()
 
 create_users()
 {
-    u=devpi
-    adduser $u --home /home/users/$u --shell /bin/bash --disabled-password --gecos "$u"
+    Lu=${devpiuser}
+    adduser $Lu --home /home/users/$u --shell /bin/bash --disabled-password --gecos "$Lu"
+}
+
+check_status()
+{
+    date
+    echo "user: ${devpiuser}"
+    echo "default storagedir: ${storagedir}"
+    
+    grep $u /etc/passwd
+    ls -lah ${storagedir}
+    ls -lah ${codedir}    
 }
 
 create_users
@@ -56,3 +68,4 @@ create_users
 create_directory ${storagedir}
 fix_permissions  ${storagedir}
 
+check_status

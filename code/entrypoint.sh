@@ -29,6 +29,8 @@ if [ "${1:-}" == "bash" ]; then
     exec "$@"
 fi
 
+echo "Server root: $DEVPI_SERVER_ROOT"
+
 DEVPI_ROOT_PASSWORD="${DEVPI_ROOT_PASSWORD:-}"
 if [ -f "$DEVPI_SERVER_ROOT/.root_password" ]; then
     DEVPI_ROOT_PASSWORD=$(cat "$DEVPI_SERVER_ROOT/.root_password")
