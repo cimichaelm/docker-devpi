@@ -13,6 +13,8 @@ the following plugins and components:
 Version 7.0
 -----------
 
+* Updating versions
+* Align for deployment with k8s
 
 Starting the image
 ------------------
