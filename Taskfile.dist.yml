@@ -6,7 +6,7 @@ vars:
   branch_wip: "develop"
   
   version: 7.0.0
-  project: schedule
+  project: devpi
 
 includes:
   git:
