@@ -1,0 +1,23 @@
+version: '3'
+
+vars:
+  branch_master: "main"
+  branch_develop: "develop"
+  branch_wip: "develop"
+  
+  version: 7.0.0
+  project: schedule
+
+includes:
+  git:
+    taskfile: $HOME/tasks/git-tasks.yml
+    optional: true
+
+  dev:
+    taskfile: $HOME/tasks/dev-tasks.yml
+    optional: true
+  make:
+    taskfile: $HOME/tasks/make-tasks.yml
+    optional: true
+
+tasks:
