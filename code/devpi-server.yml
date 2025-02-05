@@ -1,0 +1,5 @@
+devpi-server:
+  serverdir: /storage/devpi-server
+  #secretfile: /etc/devpi-server/secret
+  host: 0.0.0.0
+  port: 3141
