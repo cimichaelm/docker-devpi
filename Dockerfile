@@ -27,5 +27,5 @@ COPY code/devpi-client /usr/local/bin/
 USER devpi
 
 # add entrypoint
-ENTRYPOINT [ "/bin/bash", "/code/entrypoint.sh" ]
+ENTRYPOINT [ "/bin/bash", "/code/entrypoint-supervisor.sh" ]
 EXPOSE 3141
