@@ -2,13 +2,22 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-PORT=3141
-u=devpi
-venv=env
-PREFIX=/
-PROG=${PREFIX}/${venv}/bin/devpi-server
-opts="--restrict-modify root --host 0.0.0.0 --port $PORT"
-opts="--host 0.0.0.0 --port $PORT"
+function defaults() {
+    PORT=3141
+    u=devpi
+    venv=env
+    PREFIX=/
+    venvbin=${PREFIX}/${venv}/bin
+    PROG=${PREFIX}/${venv}/bin/devpi-server
+    opts="--restrict-modify root --host 0.0.0.0 --port $PORT"
+    opts="--host 0.0.0.0 --port $PORT"
+}
+
+function use_venv() {
+    if [ -d ${venvbin} ]; then
+	. ${venvbin}/activate
+    fi
+}
 
 function generate_password() {
     # We disable exit on error because we close the pipe
@@ -29,6 +38,10 @@ if [ "${1:-}" == "bash" ]; then
     exec "$@"
 fi
 
+defaults
+
+use_venv
+
 echo "Server root: $DEVPI_SERVER_ROOT"
 
 DEVPI_ROOT_PASSWORD="${DEVPI_ROOT_PASSWORD:-}"
@@ -47,7 +60,7 @@ initialize=no
 if [ ! -f "$DEVPI_SERVER_ROOT/.serverversion" ]; then
     initialize=yes
     echo "ENTRYPOINT: Initializing server root $DEVPI_SERVER_ROOT"
-    devpi-init --serverdir "$DEVPI_SERVER_ROOT"
+    ${venvbin}/devpi-init --serverdir "$DEVPI_SERVER_ROOT"
 fi
 
 echo "ENTRYPOINT: Starting devpi-server"
